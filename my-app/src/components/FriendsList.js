@@ -33,6 +33,10 @@ const FriendsList = props => {
             .then(res => setFriends(res.data))
             .catch(err => console.log(err));
     };
+
+    const friend = id => {
+        props.history.push(`/friends/${id}`);
+    };
     
     return(
         <div className='friends-list-container'>
@@ -47,7 +51,7 @@ const FriendsList = props => {
             <div className='friends-list'>
                 {friends.map((item, index) => (
                     <div className='friend' key={index}>
-                        <h3>{item.name}</h3>
+                        <h3 onClick={() => friend(item.id)}>{item.name}</h3>
                         <p>Age: {item.age}</p>
                         <p>Email: {item.email}</p>
                         <button onClick={() => removeFriend(item.id)}>Unfriend {item.name}</button>
