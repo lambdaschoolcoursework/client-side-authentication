@@ -29,9 +29,9 @@ const FriendsList = props => {
     };
 
     const removeFriend = id => {
-        setFriends(friends.filter(item => {
-            return item.id !== id;
-        }));
+        axiosWithAuth().delete(`/friends/${id}`)
+            .then(res => setFriends(res.data))
+            .catch(err => console.log(err));
     };
     
     return(
